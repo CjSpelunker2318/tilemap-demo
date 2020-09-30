@@ -1,4 +1,7 @@
-// Player
+controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
+    
+})
+//  Player
 let mySprite = sprites.create(img`
         . . . . . . . . . . b 5 b . . . 
             . . . . . . . . . b 5 b . . . . 
@@ -17,9 +20,9 @@ let mySprite = sprites.create(img`
             . . . c c c c c c c c b b . . . 
             . . . . . . . . . . . . . . . .
     `, SpriteKind.Player)
-controller.moveSprite(mySprite)
+controller.moveSprite(mySprite, 100, 100)
 scene.cameraFollowSprite(mySprite)
-// Background image
+//  Background image
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
         9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -142,7 +145,7 @@ scene.setBackgroundImage(img`
         dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
         dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 `)
-// Tilemap
+//  Tilemap
 scene.setTileMap(img`
     ................................................
         ................................................
@@ -154,30 +157,38 @@ scene.setTileMap(img`
         ..........22..............................222...
 `)
 scene.setTile(7, img`
-        5 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7
-        7 7 7 7 7 7 7 7 7 7 7 7 7 1 7 7
-        7 7 7 1 1 7 7 7 7 7 7 7 1 7 1 7
-        7 7 3 1 1 3 7 7 7 5 7 7 6 1 6 7
-        7 1 1 6 6 1 1 7 7 5 7 7 7 7 7 7
-        7 d 1 7 7 1 d 7 7 6 7 7 7 7 7 7
-        7 6 3 1 1 3 6 7 7 7 7 5 7 7 7 7
-        7 7 6 d d 6 7 7 7 7 5 5 6 7 7 7
-        7 7 7 7 7 7 7 1 7 7 5 6 7 7 7 7
-        7 7 7 7 7 7 1 7 1 7 7 7 1 1 7 7
-        7 7 1 7 7 7 6 1 6 7 7 3 1 1 3 7
-        7 1 7 1 7 7 7 7 7 7 1 1 6 6 1 1
-        7 6 1 6 7 7 7 7 7 7 d 1 7 7 1 d
-        7 7 7 7 7 7 7 7 7 7 6 3 1 1 3 6
-        7 7 7 7 7 7 7 7 7 7 7 6 d d 6 7
-        7 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7
+        5 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 1 7 7 
+            7 7 7 1 1 7 7 7 7 7 7 7 1 7 1 7 
+            7 7 3 1 1 3 7 7 7 5 7 7 6 1 6 7 
+            7 1 1 6 6 1 1 7 7 5 7 7 7 7 7 7 
+            7 d 1 7 7 1 d 7 7 6 7 7 7 7 7 7 
+            7 6 3 1 1 3 6 7 7 7 7 5 7 7 7 7 
+            7 7 6 d d 6 7 7 7 7 5 5 6 7 7 7 
+            7 7 7 7 7 7 7 1 7 7 5 6 7 7 7 7 
+            7 7 7 7 7 7 1 7 1 7 7 7 1 1 7 7 
+            7 7 1 7 7 7 6 1 6 7 7 3 1 1 3 7 
+            7 1 7 1 7 7 7 7 7 7 1 1 6 6 1 1 
+            7 6 1 6 7 7 7 7 7 7 d 1 7 7 1 d 
+            7 7 7 7 7 7 7 7 7 7 6 3 1 1 3 6 
+            7 7 7 7 7 7 7 7 7 7 7 6 d d 6 7 
+            7 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7
     `, true)
 scene.setTile(5, img`
-    . . . b b b . .
-    . . b 5 5 5 b .
-    . b 5 d 3 d 5 b
-    . b 5 1 5 3 5 b
-    . c d 1 5 3 5 c
-    . c d d 1 d 5 c
-    . . f d d d f .
-    . . . f f f . .
-`, true)
+        . . . b b b . . 
+            . . b 5 5 5 b . 
+            . b 5 d 3 d 5 b 
+            . b 5 1 5 3 5 b 
+            . c d 1 5 3 5 c 
+            . c d d 1 d 5 c 
+            . . f d d d f . 
+            . . . f f f . .
+    `, true)
+// singular jump
+controller.moveSprite(mySprite, 50, 0)
+controller.A.onEvent(ControllerButtonEvent.Pressed, function jump() {
+    if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
+        mySprite.vy - 100
+    }
+    
+})

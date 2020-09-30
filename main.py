@@ -1,4 +1,8 @@
-#Player
+def on_a_pressed():
+    pass
+controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
+
+# Player
 mySprite = sprites.create(img("""
         . . . . . . . . . . b 5 b . . . 
             . . . . . . . . . b 5 b . . . . 
@@ -18,10 +22,9 @@ mySprite = sprites.create(img("""
             . . . . . . . . . . . . . . . .
     """),
     SpriteKind.player)
-controller.move_sprite(mySprite)
+controller.move_sprite(mySprite, 100, 100)
 scene.camera_follow_sprite(mySprite)
-
-#Background image
+# Background image
 scene.set_background_image(img("""
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
         9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -144,8 +147,7 @@ scene.set_background_image(img("""
         dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
         dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 """))
-
-#Tilemap
+# Tilemap
 scene.set_tile_map(img("""
     ................................................
         ................................................
@@ -158,31 +160,50 @@ scene.set_tile_map(img("""
 """))
 scene.set_tile(7,
     img("""
-        5 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7
-        7 7 7 7 7 7 7 7 7 7 7 7 7 1 7 7
-        7 7 7 1 1 7 7 7 7 7 7 7 1 7 1 7
-        7 7 3 1 1 3 7 7 7 5 7 7 6 1 6 7
-        7 1 1 6 6 1 1 7 7 5 7 7 7 7 7 7
-        7 d 1 7 7 1 d 7 7 6 7 7 7 7 7 7
-        7 6 3 1 1 3 6 7 7 7 7 5 7 7 7 7
-        7 7 6 d d 6 7 7 7 7 5 5 6 7 7 7
-        7 7 7 7 7 7 7 1 7 7 5 6 7 7 7 7
-        7 7 7 7 7 7 1 7 1 7 7 7 1 1 7 7
-        7 7 1 7 7 7 6 1 6 7 7 3 1 1 3 7
-        7 1 7 1 7 7 7 7 7 7 1 1 6 6 1 1
-        7 6 1 6 7 7 7 7 7 7 d 1 7 7 1 d
-        7 7 7 7 7 7 7 7 7 7 6 3 1 1 3 6
-        7 7 7 7 7 7 7 7 7 7 7 6 d d 6 7
-        7 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7
+        5 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 1 7 7 
+            7 7 7 1 1 7 7 7 7 7 7 7 1 7 1 7 
+            7 7 3 1 1 3 7 7 7 5 7 7 6 1 6 7 
+            7 1 1 6 6 1 1 7 7 5 7 7 7 7 7 7 
+            7 d 1 7 7 1 d 7 7 6 7 7 7 7 7 7 
+            7 6 3 1 1 3 6 7 7 7 7 5 7 7 7 7 
+            7 7 6 d d 6 7 7 7 7 5 5 6 7 7 7 
+            7 7 7 7 7 7 7 1 7 7 5 6 7 7 7 7 
+            7 7 7 7 7 7 1 7 1 7 7 7 1 1 7 7 
+            7 7 1 7 7 7 6 1 6 7 7 3 1 1 3 7 
+            7 1 7 1 7 7 7 7 7 7 1 1 6 6 1 1 
+            7 6 1 6 7 7 7 7 7 7 d 1 7 7 1 d 
+            7 7 7 7 7 7 7 7 7 7 6 3 1 1 3 6 
+            7 7 7 7 7 7 7 7 7 7 7 6 d d 6 7 
+            7 7 5 7 7 7 7 7 7 7 7 7 7 7 7 7
     """),
     True)
-scene.set_tile(5, img("""
-    . . . b b b . .
-    . . b 5 5 5 b .
-    . b 5 d 3 d 5 b
-    . b 5 1 5 3 5 b
-    . c d 1 5 3 5 c
-    . c d d 1 d 5 c
-    . . f d d d f .
-    . . . f f f . .
-"""), True)
+scene.set_tile(5,
+    img("""
+        . . . b b b . . 
+            . . b 5 5 5 b . 
+            . b 5 d 3 d 5 b 
+            . b 5 1 5 3 5 b 
+            . c d 1 5 3 5 c 
+            . c d d 1 d 5 c 
+            . . f d d d f . 
+            . . . f f f . .
+    """),
+    True)
+    
+#singular jump
+controller.move_sprite(mySprite, 50, 0)
+def jump():
+    if mySprite.is_hitting_tile(CollisionDirection.BOTTOM):
+        mySprite.vy -100
+controller.A.on_event(ControllerButtonEvent.PRESSED, jump)
+
+#double jump
+controller.move_sprite(mySprite, 50, 0)
+can_double_jump = True
+def jump():
+    global can_double_jump
+    if can_double_jump:
+        mySprite.vy = -100
+        can_double_jump = mySprite.is_hitting_tile(CollisionDirection.BOTTOM)
+controller.A.on_event(ControllerButtonEvent.PRESSED, jump)
